@@ -6,46 +6,39 @@
 
     <title>Hello World</title>
 
-    <style>
-        /*body {*/
-        /*border: 1px solid black;*/
-        /*}*/
-        .TOCSectNum:after {
-            content: ": ";
-        }
-
-        .rect {
-            position: absolute;
-            width: 20%;
-            height: 200px;
-/*            margin-left: auto;
-            margin-right: auto;*/
-            background: skyblue;
-            border: 1px solid black;
-            transition: opacity 5s ease-in;
-            margin-left: 10px;
-            margin-top: 10px;
-        }
-
-        div.enclosure {
-            border: solid black 10px;
-            margin: 10px;
-        }
-    </style>
+    <style></style>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.theme.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css">
     <script>
         window.onload = function() { console.log("loaded"); }
     </script>
 
     <!-- Inline scripts are forbidden in Firefox OS apps (CSP restrictions),
          so we use a script file. -->
-    <script src="onload.js" defer></script>
-    <script src="toc.js" defer></script>
-    <script src="animations.js" async></script>
-    <script src="drag.js" async></script>
-    <script src="wheel.js" async></script>
+    <script src="js/onload.js" defer></script>
+    <script src="js/toc.js" defer></script>
+    <script src="js/animations.js" async></script>
+    <script src="js/drag.js" async></script>
+    <script src="js/wheel.js" async></script>
+    <script src="js/InputFilter.js" defer></script>
+    <script src="js/Keymap.js" defer></script>
+    <script src="js/uploadprogess.js" defer></script>
+    <script src="js/linkdetails.js" defer></script>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/jquery-ui.js" defer></script>
+    <script src="js/jquery-plugin.js" defer></script>
 
+    <script>
+        $(function() {
+           $(".jquery").css({border: "1px solid black", height: "50px", "background-color": "lightblue"})
+                   .click(function(e){console.log(e.type + " currentTarget: " + e.currentTarget + " handler: " + e.handler)});
+        });
+    </script>
 
 </head>
+
 
 <body>
 <!-- This code is in the public domain. Enjoy! -->
@@ -87,10 +80,12 @@
 
 <form name="nameform" class="formClass" action="#">
     First name:<br>
-    <input type="text" name="firstname" value="Mickey">
+    <input type="text" name="firstname" value="Mickey" oninput="this.value = this.value.toUpperCase();">
     <br>
     Last name:<br>
-    <input type="text" name="lastname" value="Mouse">
+    <input type="text" name="lastname" value="Mouse"> <br>
+    Zip code: <input id="zip" type="text" data-allowed-chars="0123456789" data-messageid="zipwarn">
+    <span id="zipwarn" style="color:red;visibility:hidden">Digits only</span>
     <br><br>
     <!-- Radio -->
     <label for="male">Male</label>
@@ -116,4 +111,21 @@
     <input type="submit" value="Submit">
 </form>
 
+<h2> Upload progress event</h2>
+<div class="fileDropTarget" data-uploadto="http://localhost:63342/JS_Definite_Guide">
+    Drop here
+</div>
+
+<h2> &lt;a&gt; tag</h2>
+<a class="link" href="js/linkdetails.js">js/linkdetails.js</a>
+
+<h2> jQuery </h2>
+<div class="jquery" >
+        <p>Hello</p>
+        <p>World</p>
+</div>
+
+
+<h3> jQuery UI</h3>
+<input class="date">
 </html>
